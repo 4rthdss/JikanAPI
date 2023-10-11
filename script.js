@@ -1,17 +1,17 @@
 function getSeason() {
     let seasonUrl = `https://api.jikan.moe/v4/seasons/now`
     fetch(seasonUrl)
-    .then(response => response.json())
-    .then(data => {
-        let node = document.getElementById('search_results');
-        while (node.firstChild) {node.removeChild(node.firstChild);}
+        .then(response => response.json())
+        .then(data => {
+            let node = document.getElementById('search_results');
+            while (node.firstChild) { node.removeChild(node.firstChild); }
 
 
             data.data.forEach(item => {
                 document.getElementById('search_results')
-                .insertAdjacentHTML(
-                    'beforeend',
-                    `
+                    .insertAdjacentHTML(
+                        'beforeend',
+                        `
                     <span>${item.title}</span>
                         <div class="card__image">
                             <a data-fancybox href="${item.images.jpg.large_image_url}"><img width="230" heigth="325" src="${item.images.jpg.large_image_url}" alt="${item.title}" /> </a>
@@ -19,9 +19,9 @@ function getSeason() {
                             </div>
                         <br> 
                     `
-                );
+                    );
             });
-    });
+        });
 
 }
 getSeason()
@@ -33,24 +33,24 @@ function search() {
 
 
     fetch(requestUrl)
-    .then(response => response.json())
-    .then(data => {
-        let node = document.getElementById('search_results');
-        while (node.firstChild) {node.removeChild(node.firstChild);}
+        .then(response => response.json())
+        .then(data => {
+            let node = document.getElementById('search_results');
+            while (node.firstChild) { node.removeChild(node.firstChild); }
             data.data.forEach(item => {
                 document.getElementById('search_results')
-                .insertAdjacentHTML(
-                    'beforeend',
-                    `
+                    .insertAdjacentHTML(
+                        'beforeend',
+                        `
                     <span>${item.title}</span>
                         <div class="card__image">
-                            <img width="230" heigth="325" src="${item.images.jpg.large_image_url}" alt="${item.title}" />
+                        <a data-fancybox href="${item.images.jpg.large_image_url}"><img width="230" heigth="325" src="${item.images.jpg.large_image_url}" alt="${item.title}" /></a>
                         </div>
                         <br> 
                     `
-                );
+                    );
             });
-    });
+        });
 }
 
 document.getElementById('search').onclick = () => search();
