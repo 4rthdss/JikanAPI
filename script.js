@@ -5,6 +5,8 @@ function getSeason() {
     .then(data => {
         let node = document.getElementById('search_results');
         while (node.firstChild) {node.removeChild(node.firstChild);}
+
+
             data.data.forEach(item => {
                 document.getElementById('search_results')
                 .insertAdjacentHTML(
@@ -12,8 +14,9 @@ function getSeason() {
                     `
                     <span>${item.title}</span>
                         <div class="card__image">
-                            <img width="230" heigth="325" src="${item.images.jpg.large_image_url}" alt="${item.title}" />
-                        </div>
+                            <a data-fancybox href="${item.images.jpg.large_image_url}"><img width="230" heigth="325" src="${item.images.jpg.large_image_url}" alt="${item.title}" /> </a>
+
+                            </div>
                         <br> 
                     `
                 );
